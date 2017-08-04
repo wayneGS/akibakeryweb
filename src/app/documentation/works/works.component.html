@@ -1,0 +1,28 @@
+<nav-bar-top></nav-bar-top>
+<nav id="tabNav" class="navbar bg-faded" style="padding:0px;padding-top:2px;">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link nav-btn"[routerLink]="['/documentation/index']">
+            <span class="fa fa-arrow-circle-left fa-fw text-warning"></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['/documentation/members/', akiSettings.queryParamFromSearch]">Members</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tab 2</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Add</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/documentation/index/', akiSettings.queryParamFromSearch]">Tab 3</a>
+    </li>
+  </ul>
+</nav>
+
+<app-datagrid-generic [gridComponentSettings]="gridComponentSettings"  class="mb-0 d-flex flex-column min-100" style="max-height:1400px;height:100%;padding-bottom:44px;"></app-datagrid-generic>
+
+<app-registration-form *ngIf="akiSettings.selectedRow && akiSettings.selectedBtnClicked=='edit'"></app-registration-form>
+
+<nav-bar-bot></nav-bar-bot>

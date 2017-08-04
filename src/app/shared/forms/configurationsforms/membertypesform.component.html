@@ -1,0 +1,59 @@
+<div class="mb-0 d-flex align-items-center flex-column justify-content-center min-100"  style="">
+  <div class="container-fluid" style="margin-top:6rem;max-height:1400px;height:100%;padding-bottom:32px;">
+
+    <div class="row notamodal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="btn-group" role="group">
+              <button [disabled]="rowToEditIndex == 0" (click)="selectPreviousRow()" type="button" class="btn btn-secondary"><span class="fa fa-chevron-up"></span></button>
+              <button [disabled]="(rowToEditIndex+1) >= akiSettings.searchResults.length" (click)="selectNextRow()" type="button" class="btn btn-secondary"><span class="fa fa-chevron-down"></span></button>
+            </div>
+            <span class="modal-title">{{rowToEdit.code}} {{rowToEdit.description}}</span>
+            <button (click)="deSelectRow()" type="button" class="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="max-height:480px;overflow-y:auto">
+            <form #thisForm="ngForm" (ngSubmit)="onSubmit(thisForm.value)">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="code">Code</label>
+                        <i class="fa fa-key"></i>
+                        <input type="text" name="code" id="code" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].code" disabled />
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].description" />
+                      </div>
+
+                    </td>
+
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button (click)="deSelectRow()" type="button" name="button" class="btn btn-default" style="margin-right:20px;">Close</button>
+            <button (click)="onSubmit(thisForm.value)" type="button" name="button" class="btn btn-success">Save <span *ngIf="submitting" class="fa fa-spinner fa-pulse fa-fw"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

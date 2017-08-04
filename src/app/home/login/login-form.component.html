@@ -1,0 +1,16 @@
+
+<div class="mb-0 d-flex align-items-center flex-column justify-content-center min-100">
+  <div *ngIf="!akiSettings.lookupsLoaded" class="progress" style="width: 30%">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">Loading...</div>
+  </div>
+  <form *ngIf="akiSettings.lookupsLoaded" name="credentials" class="form-signin">
+    <label for="username" class="sr-only">Username</label>
+    <input [(ngModel)]="credentials.username" type="email" name="username" class="form-control" placeholder="Email" required focus>
+    <label for="password" class="sr-only">Password</label>
+    <input [(ngModel)]="credentials.password" type="password" name="password" class="form-control" placeholder="Password" required>
+    <button class="btn btn-primary btn-block" type="submit" (click)="authenticate()">
+      <span *ngIf="!authInProgress">Sign in</span>
+      <span *ngIf="authInProgress" class="fa fa-spinner fa-fw fa-pulse"></span>
+    </button>
+  </form>
+</div>

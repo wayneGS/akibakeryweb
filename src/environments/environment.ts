@@ -4,5 +4,11 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  appFullName: 'Aki Royalty Web',
+  appShortName: 'Aki Royalty',
+  version: 201707081211,
+  restBaseUrl: 'http://191.237.68.123',
+  authenticationUrl: 'http://191.237.68.123/akiroyalty'
+
 };

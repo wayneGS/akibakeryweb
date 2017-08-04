@@ -1,0 +1,7 @@
+<nav-bar-top></nav-bar-top>
+
+<app-datagrid-generic [gridComponentSettings]="gridComponentSettings" class="mb-0 d-flex flex-column min-100" style="max-height:1400px;height:100%;padding-bottom:16px;"></app-datagrid-generic>
+
+<app-territorycodes-form *ngIf="akiSettings.selectedRow && akiSettings.selectedBtnClicked=='edit'" (saveData)="doGridDataViewRefresh(saveData)"></app-territorycodes-form>
+
+<nav-bar-bot></nav-bar-bot>

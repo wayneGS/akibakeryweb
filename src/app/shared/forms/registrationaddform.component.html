@@ -1,0 +1,330 @@
+<div class="mb-0 d-flex align-items-center flex-column justify-content-center min-100"  style="">
+  <div class="container-fluid" style="margin-top:6rem;max-height:1400px;height:100%;padding-bottom:32px;">
+
+    <div class="row notamodal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="modal-title">Add New</span>
+            <button (click)="close()" type="button" class="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="max-height:480px;overflow-y:auto">
+            <form #thisForm="ngForm" (ngSubmit)="onSubmit(thisForm.value)">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+
+                        <label for="datecreated"><i class="fa fa-key"></i></label>
+                        <input type="text" class="form-control" disabled/>
+
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="catno">CatNo</label>
+                        <input type="text" name="catno" id="catno" class="form-control" />
+                      </div>
+
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="track">Track No</label>
+                        <input type="text" name="track" id="track" class="form-control"/>
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="form-control" />
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="alternativetitle">Alternative Title</label>
+                        <input type="text" name="alternativetitle" id="alternativetitle" class="form-control"  />
+                      </div>
+
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="albumname">Album Name</label>
+                        <input type="text" name="albumname" id="albumname" class="form-control"  />
+                      </div>
+
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="artistename"> Artiste Name</label>
+                        <input type="text" name="artistename" id="artistename" class="form-control"  />
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="mainperformerid">Main Performer</label>
+                        <!-- Members -->
+                        <br/><select name="mainperformerid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.members" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="labelid">Label/Producer</label>
+                        <br/><select name="labelid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.labels" [ngValue]="l.id-1">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="marketinglabelid">Marketing Label</label>
+                        <!-- label -->
+                        <br/><select name="marketinglabelid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.labels" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="mainwriterid">Main Writer</label>
+                        <!-- Members -->
+
+                        <br/><select name="mainwriterid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.members" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="mainpublisherid">Main Publisher</label>
+
+                        <br/><select name="mainpublisherid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.members" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+                    </td>
+
+
+                  </tr>
+
+
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="datecreated">Date Created</label>
+                        <input type="text" name="datecreated" id="datecreated" class="form-control" disabled/>
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="datedocumented">Date Documented</label>
+                        <input type="text" name="datedocumented" id="datedocumented" class="form-control" />
+                      </div>
+
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="documented">Documented?</label>
+                        <!-- Y/N -->
+                        <br/><select name="documented" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.yesno" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="conflict">Conflict?</label>
+                        <!-- Y/N -->
+
+                        <br/><select name="conflict" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.yesno" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="yearofrelease">Year of Release</label>
+                        <input type="text" name="yearofrelease" id="yearofrelease" class="form-control" />
+                      </div>
+
+                    </td>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="releasedate">Release Date</label>
+                        <input type="text" name="releasedate" id="releasedate" class="form-control" />
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="genre">Genre</label>
+
+                        <br/><select name="genre" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.genres" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="ownershiptype">Ownership Type</label>
+                        <br/><select name="ownershiptype" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.ownershiptypes" [ngValue]="l.id">{{l.name}}</option>
+
+                        </select>
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="releasedate">ISRC</label>
+                        <input type="text" name="internationsongid" id="internationsongid" class="form-control" />
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="durationsong">Duration of work</label>
+                        <input type="text" name="durationsong" id="durationsong" class="form-control" />
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="groupid">Group/Band</label>
+
+                        <br/><select name="groupid" class="form-control">
+                          <option *ngFor="let l of lk.groups" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="allowsearch">Searchable?</label>
+                        <!-- Y/N -->
+
+                        <br/><select name="allowsearch" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.yesno" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="norsheet">NOR sheet</label>
+                        <input type="text" name="norsheet" id="norsheet" class="form-control" />
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="audiocopyreceived">Audio Copy Received</label>
+                        <!-- Y/N -->
+
+                        <br/><select name="audiocopyreceived" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.yesno" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="specialsong">Label Distribution Song></label>
+                        <!-- Y/N -->
+                        <br/><select name="specialsong" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.yesno" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button (click)="close()" type="button" name="button" class="btn btn-default" style="margin-right:20px;">Close</button>
+            <button (click)="onSubmit(thisForm.value)" type="button" name="button" class="btn btn-success">Save <span *ngIf="submitting" class="fa fa-spinner fa-pulse fa-fw"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

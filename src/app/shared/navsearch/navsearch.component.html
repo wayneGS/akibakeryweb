@@ -1,0 +1,9 @@
+<form class="form-inline nav-search">
+  <div class="input-group">
+    <input [(ngModel)]="akiSettings.queryParamFromSearch" (keyup)="validateSearch()" (keyup.enter)="navigateForSearch()" type="text" name="queryParamFromSearch" class="form-control" placeholder="Search" autofocus>
+    <span *ngIf="akiSettings.searchResults.length > 0" class="input-group-addon">
+      <span class="badge badge-success">{{akiSettings.searchResults.length}}</span>
+    </span>
+		<span (click)="navigateForSearch()" [ngClass]="{'text-success': akiSettings.allowSearch}" class="input-group-addon fa fa-search"></span>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<nav-bar-top></nav-bar-top>
+
+<login-form *ngIf="akiSettings.isRegistered && !akiSettings.isAuthenticated"></login-form>
+
+<register-form *ngIf="!akiSettings.isRegistered"></register-form>
+
+
+<nav-bar-bot></nav-bar-bot>
