@@ -1,6 +1,6 @@
 {
-  "name": "akiroyaltyweb",
-  "version": "0.0.0",
+  "name": "akibakeryweb",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
