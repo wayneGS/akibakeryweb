@@ -9,11 +9,12 @@
               <button [disabled]="rowToEditIndex == 0" (click)="selectPreviousRow()" type="button" class="btn btn-secondary"><span class="fa fa-chevron-up"></span></button>
               <button [disabled]="(rowToEditIndex+1) >= akiSettings.searchResults.length" (click)="selectNextRow()" type="button" class="btn btn-secondary"><span class="fa fa-chevron-down"></span></button>
             </div>
-            <span class="modal-title">{{akiSettings.searchResults[rowToEditIndex].code}} {{akiSettings.searchResults[rowToEditIndex].description}}</span>
+            <span class="modal-title">{{rowToEdit.registrationid}} {{rowToEdit.title}}</span>
             <button (click)="deSelectRow()" type="button" class="close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div class="modal-body" style="max-height:480px;overflow-y:auto">
             <form #thisForm="ngForm" (ngSubmit)="onSubmit(thisForm.value)">
               <table class="table">
@@ -21,24 +22,60 @@
                   <tr>
                     <td>
                       <div class="form-group">
-                        <label for="code">Code</label>
+                        <label for="registrationid">Registration ID</label>
                         <i class="fa fa-key"></i>
-                        <input type="text" name="code" id="code" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].code" disabled />
+                        <input type="text" name="registrationid" id="registrationid" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].registrationid" disabled />
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label for="mainperformerid">Main Performer</label>
+                        <!-- Members -->
+                        <br/><select [(ngModel)]="akiSettings.searchResults[rowToEditIndex].mainperformerid" name="mainperformerid" class="form-control" style="font-size: 10pt;">
+                          <option *ngFor="let l of lk.members" [ngValue]="l.id">{{l.name}}</option>
+                        </select>
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr>
+
+                    <td>
+                      <div class="form-group">
+                        <label for="catno">Instrument</label>
+                        <input type="text" name="instrument" id="instrument" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].instrument" />
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr>
+
+
+                    <td>
+                      <div class="form-group">
+                        <label for="track">Percent Amount</label>
+                        <input type="number" name="percentamount" id="percentamount" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].percentamount" />
                       </div>
 
                     </td>
 
+                  </tr>
+
+
+                  <tr>
                     <td>
                       <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" name="description" id="description" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].description" />
+                        <label for="title">User</label>
+                        <input type="text" name="userid" id="userid" class="form-control" [(ngModel)]="akiSettings.searchResults[rowToEditIndex].userid" disabled />
                       </div>
 
                     </td>
 
 
                   </tr>
-
 
                 </tbody>
               </table>

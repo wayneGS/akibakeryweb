@@ -16,11 +16,26 @@ export class DataGridCellBtnMemberComponent {
       this.params = params;
   }
 
+  idToRowNum(s) {
+    for(let i=0; i < this.akiSettings.searchResults.length; i++){
+      if(this.akiSettings.searchResults[i].registrationid == s){
+          return this.akiSettings.searchResults[i];
+      }
+    }
+  }
+
   showGridRowDetail(s){
     console.log('button param', s);
     this.akiSettings.selectedRow = s;
     this.akiSettings.selectedBtnClicked = 'member';
     this.akiSettings.queryParamFromSearch = s;
+    let works = {
+      id:s,
+      title: this.idToRowNum(s).title
+    };
+    this.akiSettings.works = works;
+
+    console.log('this.akiSettings.works', this.akiSettings.works);
     this.router.navigate(['documentation/members/'+s]);
 
   }

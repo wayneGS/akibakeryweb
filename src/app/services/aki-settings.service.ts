@@ -34,7 +34,7 @@ export class AkiSettingsService implements CanActivate {
 
   public appFullName: string;
   public appShortName: string;
-  public appVersion: number;
+  public appVersion: string;
   public restBaseUrl: string;
   public authenticationUrl: string;
 
@@ -76,14 +76,17 @@ export class AkiSettingsService implements CanActivate {
   public allowSearch: boolean = false;
   public currentGrid: string = '';
 
+  public enableAddNew: boolean = false;
+  public addNewType: string;
+
+
   // TODO Move these into component init to be a property on gridSearch
   // i.e. gridSearch.registration.searchResults etc
   public searchResults: any = [];
   public selectedRow: any;
   public selectedBtnClicked: any;
-  public addNewType: string = '';
 
-
+  public works:any;
 
   constructor(private router: Router, private http: Http, private localStorageService: LocalStorageService) {
 

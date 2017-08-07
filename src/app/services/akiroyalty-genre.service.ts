@@ -79,7 +79,7 @@ export class AkiroyaltyGenreService {
   }
 
   public putItem(item) {
-    let id = item.registrationid;
+    let id = item.code;
     let data = this.wrapAkiData(item);
     return this.http
     .put(`${this.akiSettings.restBaseUrl}${this.getRestPathUri()}/${id}`, data, {headers: this.akiSettings.getHeaders()})

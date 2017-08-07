@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@
 import { AkiSettingsService } from '../../services/aki-settings.service';
 import { AkiroyaltyGenreService } from '../../services/akiroyalty-genre.service';
 
+
 import { DataGridGenericComponent } from "../../shared/datagridgeneric/datagridgeneric.component";
 import { DataGridCellBtnEditComponent } from "../../shared/datagridgeneric/cell/btnedit.component";
 import { DataGridCellBtnDelComponent } from "../../shared/datagridgeneric/cell/btndel.component";
@@ -10,7 +11,7 @@ import { DataGridCellDisplayFromLookupComponent } from "../../shared/datagridgen
 
 
 @Component({
-  selector: 'app-genres',
+  selector: 'app-config-genres',
   templateUrl: './genres.component.html',
   styleUrls: ['./genres.component.css']
 })

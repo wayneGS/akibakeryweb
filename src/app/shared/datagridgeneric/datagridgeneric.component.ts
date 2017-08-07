@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input,  Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AkiSettingsService } from '../../services/aki-settings.service';
@@ -32,6 +32,7 @@ import 'rxjs/add/operator/switchMap';
 export class DataGridGenericComponent implements OnInit {
 
   @Input() gridComponentSettings:any;
+  @Output() gridDataLoaded = new EventEmitter();
 
   public gridOptions: GridOptions;
   private searchSubscription:any;
@@ -96,10 +97,11 @@ export class DataGridGenericComponent implements OnInit {
   }
 
   public refreshData(){
-    /*this.gridOptions.api.setRowData(this.akiSettings.gridSearch[this.gridComponentSettings.gridSearchName].searchResults);*/
+    this.loadData();
     this.gridOptions.api.setRowData(this.akiSettings.searchResults);
     this.gridOptions.api.refreshView();
   }
+
   public loadData() {
     if (this.autoSearch){
       console.log('Load Grid Data From Web Service Call');
@@ -129,7 +131,7 @@ export class DataGridGenericComponent implements OnInit {
           this.gridOptions.api.hideOverlay();
         }
       );
-    }else if(this.akiSettings.queryParamFromSearch != undefined && this.akiSettings.queryParamFromSearch != '' && this.akiSettings.queryParamFromSearch.length > 0){
+    } else if(this.akiSettings.queryParamFromSearch != undefined && this.akiSettings.queryParamFromSearch != '' && this.akiSettings.queryParamFromSearch.length > 0){
       console.log('Load Grid Data From Web Service Call');
       let url = this.akiSettings.restBaseUrl + this.gridComponentSettings.restResourcePath + this.akiSettings.queryParamFromSearch;
       console.log(url);
@@ -149,7 +151,8 @@ export class DataGridGenericComponent implements OnInit {
           /*if(this.akiSettings.gridSearch[this.gridComponentSettings.gridSearchName].searchResults.length==0) this.gridOptions.api.showNoRowsOverlay()*/
           if(this.akiSettings.searchResults.length==0) this.gridOptions.api.showNoRowsOverlay()
           else this.gridOptions.api.hideOverlay();
-
+          // emit event on data load.
+          this.gridDataLoaded.emit(this.akiSettings.searchResults.length);
         },
         resp => {
           console.log(resp);
@@ -173,6 +176,11 @@ export class DataGridGenericComponent implements OnInit {
     }
 
     return listdata;
+  }
+
+  public refreshView(){
+    this.gridOptions.api.setRowData(this.akiSettings.searchResults);
+    this.gridOptions.api.refreshView();
   }
 
 }

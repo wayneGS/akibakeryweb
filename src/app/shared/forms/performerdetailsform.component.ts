@@ -9,9 +9,9 @@ import { AkiroyaltyRegistrationService } from '../../services/akiroyalty-registr
 import { slideInOutAnimation } from '../../_animations/index';
 
 @Component({
-  selector: 'app-registration-form',
-  templateUrl: './registrationform.component.html',
-  styleUrls: ['./registrationform.component.css'],
+  selector: 'app-performer-details-form',
+  templateUrl: './performerdetailsform.component.html',
+  styleUrls: ['./performerdetailsform.component.css'],
     // make slide in/out animation available to this component
     animations: [slideInOutAnimation],
 
@@ -29,7 +29,7 @@ import { slideInOutAnimation } from '../../_animations/index';
     ]
 
 })
-export class RegistationFormComponent implements OnInit {
+export class PerformerDetailsFormComponent implements OnInit {
   @Output() saveData = new EventEmitter();
 
   public rowToEdit:any;
@@ -47,9 +47,9 @@ export class RegistationFormComponent implements OnInit {
     console.log('selectedRow', this.akiSettings.selectedRow);
 
     /*this.rowToEdit = this.akiSettings.gridSearch[this.akiSettings.currentGrid].searchResults.find(rowToEdit => rowToEdit.registrationid == this.akiSettings.gridSearch[this.akiSettings.currentGrid].selectedRow);*/
-    this.rowToEdit = this.akiSettings.searchResults.find(rowToEdit => rowToEdit.registrationid == this.akiSettings.selectedRow);
+    this.rowToEdit = this.akiSettings.searchResults.find(rowToEdit => rowToEdit.performerid == this.akiSettings.selectedRow);
     /*this.rowToEditIndex = this.akiSettings.gridSearch[this.akiSettings.currentGrid].searchResults.findIndex((element, index, array) => element.registrationid == this.akiSettings.gridSearch[this.akiSettings.currentGrid].selectedRow);*/
-    this.rowToEditIndex = this.akiSettings.searchResults.findIndex((element, index, array) => element.registrationid == this.akiSettings.selectedRow);
+    this.rowToEditIndex = this.akiSettings.searchResults.findIndex((element, index, array) => element.performerid == this.akiSettings.selectedRow);
     console.log('rowToEdit', this.rowToEdit);
     console.log('rowToEditIndex', this.rowToEditIndex);
 
@@ -60,6 +60,15 @@ export class RegistationFormComponent implements OnInit {
     this.lk.ownershiptypes = this.akiSettings.getCache().get(`lookup_OwnershipTypes`);
     this.lk.members = this.akiSettings.getCache().get(`lookup_Members`);
 
+  }
+
+  idToRowNum() {
+    for(let i=0; i < this.akiSettings.searchResults.length; i++){
+      if(this.akiSettings.searchResults[i].performerid == this.akiSettings.selectedRow){
+          this.rowToEditIndex = i;
+          break;
+      }
+    }
   }
 
   mapToRow(){

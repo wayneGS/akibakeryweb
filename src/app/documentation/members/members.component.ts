@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { AkiSettingsService } from '../../services/aki-settings.service';
 
+import { DataGridGenericComponent } from "../../shared/datagridgeneric/datagridgeneric.component";
 import { DataGridCellBtnEditComponent } from "../../shared/datagridgeneric/cell/btnedit.component";
 import { DataGridCellBtnDelComponent } from "../../shared/datagridgeneric/cell/btndel.component";
 import { DataGridCellBtnMemberComponent } from "../../shared/datagridgeneric/cell/btnmember.component";
@@ -15,6 +16,9 @@ import { DataGridCellDisplayPercentageComponent } from "../../shared/datagridgen
 })
 
 export class MembersComponent implements OnInit, OnDestroy {
+  @ViewChild(DataGridGenericComponent)
+  private myGrid: DataGridGenericComponent;
+
   public gridComponentSettings:any = {};
   public rowToEdit:any;
   public rowToEditIndex:number;
@@ -28,8 +32,8 @@ export class MembersComponent implements OnInit, OnDestroy {
 
     this.gridComponentSettings.columnDefs = [
         {
-            headerName: "ID",
-            field: "registrationid", //"id",
+            headerName: "Performer ID",
+            field: "performerid", //"id",
             width: 72,
             cellStyle: {'text-align':'right','padding-right':'4px'},
             filter: 'number',
@@ -65,7 +69,7 @@ export class MembersComponent implements OnInit, OnDestroy {
         },
         {
             headerName: "",
-            field: "registrationid", //"id",
+            field: "performerid", //"id",
             cellRendererFramework: DataGridCellBtnEditComponent,
             width: 32,
             suppressFilter: true,
@@ -75,7 +79,7 @@ export class MembersComponent implements OnInit, OnDestroy {
         },
         {
             headerName: "",
-            field: "registrationid", //"id",
+            field: "performerid", //"id",
             cellRendererFramework: DataGridCellBtnDelComponent,
             width: 32,
             suppressFilter: true,
@@ -91,6 +95,8 @@ export class MembersComponent implements OnInit, OnDestroy {
     this.akiSettings.searchResults= [];
     this.akiSettings.selectedRow = "";
     this.akiSettings.selectedBtnClicked = "";
+
+    console.log(this.akiSettings.searchResults);
   }
 
   ngOnDestroy() { }
@@ -125,5 +131,15 @@ export class MembersComponent implements OnInit, OnDestroy {
     this.akiSettings.selectedRow = false;
   }
 
-
+  // add custom rows to grid
+  addRowsToGrid(){
+    let totalPercentageAmount=0;
+    for(let i=0; i<this.akiSettings.searchResults.length; i++){
+      totalPercentageAmount += this.akiSettings.searchResults[i].percentamount;
+    }
+    let summaryRow = {percentamount:totalPercentageAmount};
+    this.akiSettings.searchResults.push(summaryRow);
+    console.log('this.akiSettings.searchResults', this.akiSettings.searchResults);
+    this.myGrid.refreshView();
+  }
 }

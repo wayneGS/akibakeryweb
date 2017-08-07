@@ -15,6 +15,8 @@ export class DataGridCellBtnEditComponent {
   }
 
   showGridRowDetail(s){
+    console.log('edit button clicked', s);
+
     this.akiSettings.selectedRow = s;
     //this.akiSettings.gridSearch[this.akiSettings.currentGrid].selectedRow=s;
 

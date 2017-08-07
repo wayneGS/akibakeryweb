@@ -19,6 +19,7 @@ export class AkiroyaltyRegistrationService {
 
   public restResourcePath: string = '/akidocumentation';
   public resource: string = '/work';
+  public resourceList: string = '/works';
 
   constructor(public akiSettings: AkiSettingsService, private http: Http) {}
 
@@ -26,7 +27,8 @@ export class AkiroyaltyRegistrationService {
   * Service CRUD
   ****************************************************************************/
 
-  private getRestPathUri():string {
+  private getRestPathUri(useList):string {
+    if (useList) return this.restResourcePath + this.resource;
     return this.restResourcePath + this.resource;
   }
 
@@ -65,7 +67,7 @@ export class AkiroyaltyRegistrationService {
   public getItem(id:string) {
 
     let lookupData = this.http
-    .get(`${this.akiSettings.restBaseUrl}${this.getRestPathUri()}`, {headers: this.akiSettings.getHeaders()})
+    .get(`${this.akiSettings.restBaseUrl}${this.getRestPathUri(false)}`, {headers: this.akiSettings.getHeaders()})
     .map(this.extractAkiData);
 
     return lookupData;
@@ -74,7 +76,7 @@ export class AkiroyaltyRegistrationService {
   public postItem(item) {
     let data = this.wrapAkiData(item);
     return this.http
-    .post(`${this.akiSettings.restBaseUrl}${this.getRestPathUri()}`, data, {headers: this.akiSettings.getHeaders()})
+    .post(`${this.akiSettings.restBaseUrl}${this.getRestPathUri(true)}`, data, {headers: this.akiSettings.getHeaders()})
     .map(this.extractAkiData);
   }
 
@@ -82,7 +84,7 @@ export class AkiroyaltyRegistrationService {
     let id = item.registrationid;
     let data = this.wrapAkiData(item);
     return this.http
-    .put(`${this.akiSettings.restBaseUrl}${this.getRestPathUri()}/${id}`, data, {headers: this.akiSettings.getHeaders()})
+    .put(`${this.akiSettings.restBaseUrl}${this.getRestPathUri(false)}/${id}`, data, {headers: this.akiSettings.getHeaders()})
     .map(this.extractAkiData);
   }
 
@@ -90,7 +92,7 @@ export class AkiroyaltyRegistrationService {
   public deleteItem(id:string) {
 
     let lookupData = this.http
-    .delete(`${this.akiSettings.restBaseUrl}${this.getRestPathUri()}`, {headers: this.akiSettings.getHeaders()});
+    .delete(`${this.akiSettings.restBaseUrl}${this.getRestPathUri(false)}`, {headers: this.akiSettings.getHeaders()});
 
     //return lookupData;
   }

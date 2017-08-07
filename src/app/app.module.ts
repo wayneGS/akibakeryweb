@@ -44,6 +44,8 @@ import { DataGridCellDisplayPercentageComponent } from "./shared/datagridgeneric
 import { RegistationFormComponent } from './shared/forms/registrationform.component';
 import { RegistationAddFormComponent } from './shared/forms/registrationaddform.component';
 import { MemberFormComponent } from './shared/forms/memberform.component';
+import { PerformerDetailsFormComponent } from './shared/forms/performerdetailsform.component';
+
 import { GenreFormComponent } from './shared/forms/configurationsforms/genreform.component';
 import { OwnerTypesFormComponent } from './shared/forms/configurationsforms/ownertypesform.component';
 import { CountriesFormComponent } from './shared/forms/configurationsforms/countriesform.component';
@@ -85,7 +87,7 @@ import { MemberTypesComponent } from './configurations/membertypes/membertypes.c
 import { SongCommentCodesComponent } from './configurations/songcommentcodes/songcommentcodes.component';
 import { LocationsComponent } from './configurations/locations/locations.component';
 import { TerritoryCodesComponent } from './configurations/territorycodes/territorycodes.component';
- 
+
 
 
 
@@ -123,6 +125,7 @@ interface Array<T> {
     DataGridCellDisplayFromLookupComponent,
     DataGridCellDisplayPercentageComponent,
     MemberFormComponent,
+    PerformerDetailsFormComponent,
     RegistationFormComponent,
     RegistationAddFormComponent,
     GenresComponent,
@@ -130,21 +133,21 @@ interface Array<T> {
     OwnerTypesComponent,
     OwnerTypesFormComponent,
     CountriesComponent,
-    CountriesFormComponent, 
-    GroupsComponent, 
-    GroupsFormComponent,    
+    CountriesFormComponent,
+    GroupsComponent,
+    GroupsFormComponent,
     MemberRolesComponent,
     MemberRolesFormComponent,
     MemberStatusComponent,
     MemberStatusFormComponent,
-    MemberTypesComponent, 
+    MemberTypesComponent,
     MemberTypesFormComponent,
-    SongCommentCodesComponent, 
+    SongCommentCodesComponent,
     SongCommentCodesFormComponent,
     LocationsComponent,
     LocationsFormComponent,
     TerritoryCodesComponent,
-    TerritoryCodesFormComponent  
+    TerritoryCodesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -178,7 +181,7 @@ interface Array<T> {
     AkiroyaltyMemberTypesService,
     AkiroyaltySongCommentCodesService,
     AkiroyaltyLocationsService,
-    AkiroyaltyTerritoryCodesService 
+    AkiroyaltyTerritoryCodesService
   ],
   bootstrap: [AppComponent]
 })

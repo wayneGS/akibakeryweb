@@ -30,6 +30,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.akiSettings.enableSearch = true;
     this.akiSettings.currentGrid = this.gridComponentSettings.gridSearchName;
 
+    this.akiSettings.enableAddNew = true;
+    this.akiSettings.addNewType = 'members';
+
+
     this.gridComponentSettings.columnDefs = [
         {
             headerName: "ID",

@@ -41,12 +41,29 @@ export class GenreFormComponent implements OnInit {
   constructor(public akiSettings: AkiSettingsService, public akiroyaltyGenreService: AkiroyaltyGenreService) { }
 
   ngOnInit() {
+    //console.log('ngOnInit in GenreFormComponent', this.akiSettings.searchResults);
+    //console.log('this.rowToEditIndex', this.akiSettings.selectedRow);
+    //this.rowToEditIndex = this.akiSettings.selectedRow;
+    //this.mapToRow()
+    console.log('this.rowToEditIndex before idToRowNum()', this.rowToEditIndex)
+
+    this.idToRowNum();
+    console.log('this.rowToEditIndex after idToRowNum()', this.rowToEditIndex)
+    console.log('this.akiSettings.searchResults[rowToEditIndex].code', this.akiSettings.searchResults[this.rowToEditIndex].code)
+    console.log('this.akiSettings.searchResults[rowToEditIndex].description', this.akiSettings.searchResults[this.rowToEditIndex].description)
+  }
 
 
+  idToRowNum() {
+    for(let i=0; i < this.akiSettings.searchResults.length; i++){
+      if(this.akiSettings.searchResults[i].code == this.akiSettings.selectedRow){
+          this.rowToEditIndex = i;
+          break;
+      }
+    }
   }
 
   mapToRow(){
-    /*this.rowToEdit = this.akiSettings.gridSearch[this.akiSettings.currentGrid].searchResults[this.rowToEditIndex];*/
     this.rowToEdit = this.akiSettings.searchResults[this.rowToEditIndex];
     this.akiSettings.selectedRow = this.rowToEdit.code;
   }

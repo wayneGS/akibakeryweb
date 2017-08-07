@@ -16,7 +16,7 @@ export class NavAddComponent{
 
   navigateForAdd(){
     console.log('Add for this route ' + this.activatedRoute.snapshot.url[0].path);
-    this.akiSettings.addNewType = 'member';
+    this.akiSettings.addNewType = this.akiSettings.addNewType;
 
   }
 

@@ -15,7 +15,7 @@
 </ul>
 
 <nav-search *ngIf="akiSettings.isAuthenticated && akiSettings.enableSearch"></nav-search>
-<nav-add *ngIf="akiSettings.isAuthenticated && akiSettings.enableSearch"></nav-add>
+<nav-add *ngIf="akiSettings.isAuthenticated && akiSettings.enableAddNew"></nav-add>
 
 <ul class="nav navbar-nav" *ngIf="!akiSettings.isAuthenticated">
 	<li class="nav-item">

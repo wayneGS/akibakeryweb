@@ -3,8 +3,9 @@
 <nav id="tabNav" class="navbar bg-faded" style="padding:0px;padding-top:2px;">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link nav-btn"[routerLink]="['/documentation/index']">
+      <a class="nav-link nav-btn"[routerLink]="['/documentation/index', akiSettings.works.title]">
             <span class="fa fa-arrow-circle-left fa-fw text-warning"></span>
+            {{akiSettings.works.title}}
       </a>
     </li>
 
@@ -23,7 +24,8 @@
   </ul>
 </nav>
 
-<app-datagrid-generic [gridComponentSettings]="gridComponentSettings"  class="mb-0 d-flex flex-column min-100" style="max-height:1400px;height:100%;padding-bottom:44px;"></app-datagrid-generic>
-<app-registration-form *ngIf="akiSettings.selectedRow && akiSettings.selectedBtnClicked=='edit'" (saveData)="doGridDataViewRefresh(saveData)"></app-registration-form>
+
+<app-datagrid-generic [gridComponentSettings]="gridComponentSettings"  (gridDataLoaded)="addRowsToGrid()" class="mb-0 d-flex flex-column min-100" style="max-height:1400px;height:100%;padding-bottom:44px;"></app-datagrid-generic>
+<app-performer-details-form *ngIf="akiSettings.selectedRow && akiSettings.selectedBtnClicked=='edit'" (saveData)="doGridDataViewRefresh(saveData)"></app-performer-details-form>
 
 <nav-bar-bot></nav-bar-bot>
